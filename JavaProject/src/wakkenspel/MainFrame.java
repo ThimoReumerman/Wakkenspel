@@ -3,10 +3,10 @@ package wakkenspel;
 import javax.swing.JFrame;
 
 /**
- * De MainFrame class maakt het JFrame aan en zorgt dat de panels er goed instaan
+ * The MainFrame class creates the JFrame where all the other panels will be running on
  * @author Thimo Reumerman 97050932
  * @since 4-12-2019 
- * @version 0.1
+ * @version 0.2
  */
 public class MainFrame extends JFrame {
 
@@ -18,6 +18,16 @@ public class MainFrame extends JFrame {
 	
 	public MainFrame() {
 		
+		//Set frame name
+		super("Wakkenspel");
+		
+		//Set the Mainframe properties
+		setLayout(null);
+		setSize(800, 800);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//Make frame visible
+		setVisible(true);
 	}
 	
 
