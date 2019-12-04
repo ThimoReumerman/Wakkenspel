@@ -7,7 +7,10 @@ package wakkenspel;
  * @version 0.2
  */
 public class Application {
-
+	
+	/** The title of the application */
+	public static String title = "Wakkenspel";
+	
 	/**
 	 * Calls the MainFrame
 	 * @param args
