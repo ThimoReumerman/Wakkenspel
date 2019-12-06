@@ -6,7 +6,7 @@ import javax.swing.JFrame;
  * The MainFrame class creates the JFrame where all the other panels will be running on
  * @author Thimo Reumerman 97050932
  * @since 4-12-2019 
- * @version 0.4
+ * @version 0.5
  */
 public class MainFrame extends JFrame {
 
@@ -18,6 +18,10 @@ public class MainFrame extends JFrame {
 	private Background background;
 	
 	private Header header;
+	
+	private DicePanel dicePanel;
+	
+	private GuessPanel guessPanel;
 	
 	/**
 	 * Creates main JFrame and adds all the panels
@@ -41,9 +45,19 @@ public class MainFrame extends JFrame {
 		header.setBounds(0, 0, 800, Header.HEIGHT);
 		add(header);
 		
+		dicePanel = new DicePanel();
+		int dPX = (800-716) / 2;
+		dicePanel.setBounds(dPX, 100, 716, 250);
+		add(dicePanel);
+		
+		guessPanel = new GuessPanel();
+		guessPanel.setBounds(dPX, 425, GuessPanel.WIDTH, GuessPanel.HEIGHT);
+		add(guessPanel);
+		
 		background = new Background();
 		background.setBounds(0, 0, 800, 800);
 		add(background);
+		
 		
 		//Make frame visible
 		setVisible(true);

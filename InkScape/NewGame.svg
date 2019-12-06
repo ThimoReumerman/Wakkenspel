@@ -16,9 +16,9 @@
    id="svg1045"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    sodipodi:docname="NewGame.svg"
-   inkscape:export-filename="D:\Thimo\Desktop\SCHOOL\ICT-Flex\OOP\Medior\Wakkenspel\InkScape\NewGame.png"
-   inkscape:export-xdpi="96"
-   inkscape:export-ydpi="96">
+   inkscape:export-filename="D:\Thimo\Desktop\SCHOOL\ICT-Flex\OOP\Medior\Wakkenspel\JavaProject\images\newGameHover.png"
+   inkscape:export-xdpi="112.79079"
+   inkscape:export-ydpi="112.79079">
   <defs
      id="defs1039" />
   <sodipodi:namedview
@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="10.24"
-     inkscape:cx="22.739658"
-     inkscape:cy="23.17902"
+     inkscape:zoom="20.48"
+     inkscape:cx="30.347088"
+     inkscape:cy="28.321355"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -62,14 +62,14 @@
      id="layer1"
      transform="translate(-112.29868,-216.53083)">
     <circle
-       style="fill:#262626;fill-opacity:0;stroke:#ffffff;stroke-width:0.80875075;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#ffffff;fill-opacity:0.29411766;stroke:#ffffff;stroke-width:0.809;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path5761"
        cx="117.92857"
        cy="222.16072"
        r="5.2255163" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.87344122px;line-height:1.25;font-family:'Microsoft Sans Serif';-inkscape-font-specification:'Microsoft Sans Serif';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.19683604"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.87344122px;line-height:1.25;font-family:'Microsoft Sans Serif';-inkscape-font-specification:'Microsoft Sans Serif';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.809;stroke-miterlimit:4;stroke-dasharray:none"
        x="115.06445"
        y="224.6673"
        id="text5769"><tspan
@@ -77,6 +77,6 @@
          id="tspan5767"
          x="115.06445"
          y="224.6673"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Tahoma;-inkscape-font-specification:Tahoma;fill:#ffffff;fill-opacity:1;stroke-width:0.19683604">+</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Tahoma;-inkscape-font-specification:Tahoma;fill:#ffffff;fill-opacity:1;stroke-width:0.809;stroke-miterlimit:4;stroke-dasharray:none">+</tspan></text>
   </g>
 </svg>
