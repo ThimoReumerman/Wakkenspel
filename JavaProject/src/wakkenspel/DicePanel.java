@@ -1,5 +1,6 @@
 package wakkenspel;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -19,8 +20,13 @@ public class DicePanel extends JPanel {
 	
 	/** Color of the panel */
 	private Color color = new Color(0, 0, 0, 90);
+	/** Color of the empty dice border */
+	private Color emptyDiceColor = new Color(255, 255, 255, 60);
+	/** Size of the dice border */
+	private int borderSize = 2;
 	/** Pixels between different dice */
 	private int diceStep = 25;
+	
 	
 	/** Constructor of the Dice Panel. Sets opacity and background color */
 	public DicePanel() {
@@ -58,7 +64,9 @@ public class DicePanel extends JPanel {
 				int y = yMid - diceBoundsY / 2 + (Dice.size + diceStep) * row;
 				
 				//Draw empty dice
-				Dice dice = new Dice(true, x, y, g2d);
+				g2d.setColor(emptyDiceColor);
+				g2d.setStroke(new BasicStroke(borderSize));
+				g2d.drawRoundRect(x, y, Dice.size, Dice.size, Dice.arc, Dice.arc);
 			}
 			
 		}

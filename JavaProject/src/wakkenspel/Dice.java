@@ -20,10 +20,8 @@ public class Dice extends JPanel {
 	public static int size = 80;
 	/** Arc of the dice */
 	public static int arc = 10;
-	/** Size of the dice border */
-	private int borderSize = 2;
-	/** Color of the empty dice border */
-	public static Color emptyDiceColor = new Color(255, 255, 255, 60);
+
+
 	
 	/** Constructor of Dice creates a new Dice */
 	public Dice() {
@@ -52,10 +50,7 @@ public class Dice extends JPanel {
 		//Set super paint component
 		super.paintComponent(g2d);
 		
-		//Draw dice
-		g2d.setColor(emptyDiceColor);
-		g2d.setStroke(new BasicStroke(borderSize));
-		g2d.drawRoundRect(x, y, size, size, arc, arc);
+
 		
 	}
 	
