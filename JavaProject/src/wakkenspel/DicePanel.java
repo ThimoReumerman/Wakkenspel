@@ -55,6 +55,9 @@ public class DicePanel extends JPanel {
 		int diceBoundsX = Dice.size * 6 + diceStep * 5; //Bounds on the horizontal axis
 		int diceBoundsY = Dice.size * 2 + diceStep; //Bounds on the vertical axis
 		
+		int toThrow = 12;
+		int index = 0;
+		
 		//Loop through the dice to create the grid
 		for(int row = 0; row < 2; row++) { //Loop thorugh the rows
 			for (int col = 0; col < 6; col++) { //Loop through the colums
@@ -63,14 +66,20 @@ public class DicePanel extends JPanel {
 				int x = xMid - diceBoundsX / 2 + (Dice.size + diceStep) * col;
 				int y = yMid - diceBoundsY / 2 + (Dice.size + diceStep) * row;
 				
+				if(index < toThrow) {
+					Dice dice = Dice.randomDice();
+					dice.setBounds(x, y, Dice.size, Dice.size);
+					dice.setVisible(true);
+					add(dice);
+				}
+				
 				//Draw empty dice
 				g2d.setColor(emptyDiceColor);
 				g2d.setStroke(new BasicStroke(borderSize));
 				g2d.drawRoundRect(x, y, Dice.size, Dice.size, Dice.arc, Dice.arc);
+				
+				index++;
 			}
-			
 		}
-
 	}
-
 }
