@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 /**
@@ -26,15 +27,57 @@ public class DicePanel extends JPanel {
 	private int borderSize = 2;
 	/** Pixels between different dice */
 	private int diceStep = 25;
+	int xMid;
+	int yMid;
+	
 	
 	
 	/** Constructor of the Dice Panel. Sets opacity and background color */
-	public DicePanel() {
+	public DicePanel(int width, int height) {
 		
 		//Set color of panel
 		setOpaque(true);
 		setBackground(color);
-
+		setLayout(null);
+		
+		//Create dice grid
+		xMid = width / 2; //Center of horizontal axis
+		yMid = height / 2; //Center of vertical axis
+		
+		System.out.println("W: " + xMid + "H: " + yMid);
+		
+		throwDice();
+	}
+	
+	/** Throw the dice */	
+	public void throwDice() {
+		int diceBoundsX = Dice.size * 6 + diceStep * 5; //Bounds on the horizontal axis
+		int diceBoundsY = Dice.size * 2 + diceStep; //Bounds on the vertical axis
+		int toThrow = 4; //Amount of dice to throw
+		int index = 0; //Index of dice
+		
+		//Loop through the dice to create the grid
+		for(int row = 0; row < 2; row++) { //Loop thorugh the rows
+			for (int col = 0; col < 6; col++) { //Loop through the colums
+				
+				if (index < toThrow) {
+					//Set positions
+					int x = xMid - diceBoundsX / 2 + (Dice.size + diceStep) * col;
+					int y = yMid - diceBoundsY / 2 + (Dice.size + diceStep) * row;
+					
+					System.out.println("Dice " + index + "| " +  x + " " + y + " " + Dice.size + " " + Dice.size);
+					
+					Dice dice = new Dice();
+					dice.setBounds(x, y, Dice.size, Dice.size);
+					dice.setVisible(true);
+					add(dice);
+					
+					index++;			
+				} else {
+					break;
+				}
+			}
+		}
 	}
 	
 	/** Creates a grid for the dice and calls the dice draw function
@@ -43,6 +86,8 @@ public class DicePanel extends JPanel {
 		
 		//Set super paint component
 		super.paintComponent(g);
+		
+		System.out.println("Drawing dicePanel");
 		
 		//Enable anti aliasing
 		Graphics2D g2d = (Graphics2D) g;
@@ -55,9 +100,6 @@ public class DicePanel extends JPanel {
 		int diceBoundsX = Dice.size * 6 + diceStep * 5; //Bounds on the horizontal axis
 		int diceBoundsY = Dice.size * 2 + diceStep; //Bounds on the vertical axis
 		
-		int toThrow = 12;
-		int index = 0;
-		
 		//Loop through the dice to create the grid
 		for(int row = 0; row < 2; row++) { //Loop thorugh the rows
 			for (int col = 0; col < 6; col++) { //Loop through the colums
@@ -66,19 +108,10 @@ public class DicePanel extends JPanel {
 				int x = xMid - diceBoundsX / 2 + (Dice.size + diceStep) * col;
 				int y = yMid - diceBoundsY / 2 + (Dice.size + diceStep) * row;
 				
-				if(index < toThrow) {
-					Dice dice = Dice.randomDice();
-					dice.setBounds(x, y, Dice.size, Dice.size);
-					dice.setVisible(true);
-					add(dice);
-				}
-				
 				//Draw empty dice
 				g2d.setColor(emptyDiceColor);
 				g2d.setStroke(new BasicStroke(borderSize));
 				g2d.drawRoundRect(x, y, Dice.size, Dice.size, Dice.arc, Dice.arc);
-				
-				index++;
 			}
 		}
 	}

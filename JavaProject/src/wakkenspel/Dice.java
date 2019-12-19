@@ -25,40 +25,34 @@ public class Dice extends JPanel {
 	
 	boolean tl, tm, tr, mid, bl, bm, br;
 	
-	public static Dice ONE = new Dice(false, false, false, true, false, false, false);
-	public static Dice TWO = new Dice(true, false, false, false, false, false, true);
-	public static Dice THREE = new Dice(true, false, false, true, false, false, true);
-	public static Dice FOUR = new Dice(true, false, true, false, true, false, true);
-	public static Dice FIVE = new Dice(true, false, true, true, true, false, true);
-	public static Dice SIX = new Dice(true, true, true, false, true, true, true);
-	
 	public Dice() {
+		int value = (int)(Math.random() * 6) + 1;
 		
-	}
-	
-	/** @return Random dice between 1 and 6 */
-	public static Dice randomDice() {
-		int random = (int)(Math.random() * 6) + 1;
-		
-		switch (random) {
+		switch (value) {
 			case 1:
-				return ONE;
+				createDice(false, false, false, true, false, false, false);
+				break;
 			case 2:
-				return TWO;
+				createDice(true, false, false, false, false, false, true);
+				break;
 			case 3:
-				return THREE;
+				createDice(true, false, false, true, false, false, true);
+				break;
 			case 4:
-				return FOUR;
+				createDice(true, false, true, false, true, false, true);
+				break;
 			case 5:
-				return FIVE;
+				createDice(true, false, true, true, true, false, true);
+				break;
 			case 6:
-				return SIX;
+				createDice(true, true, true, false, true, true, true);
+				break;
 			default:
-				return null;
+				createDice(false, false, false, false, false, false, false);
 		}
 	}
 
-	public Dice(boolean _tl, boolean _tm, boolean _tr, boolean _mid, boolean _bl, boolean _bm, boolean _br) {
+	public void createDice(boolean _tl, boolean _tm, boolean _tr, boolean _mid, boolean _bl, boolean _bm, boolean _br) {
 		setOpaque(true);
 		setBackground(new Color(0, 0, 0, 0));
 		
@@ -100,57 +94,52 @@ public class Dice extends JPanel {
 		int dotPosX = 0;
 		int dotPosY = 0;
 		
-		int offsetX = (int)dotSize / -2;
-		int offsetY = (int)dotSize / -2;
+		int offset = (int)dotSize / -2;
 		
 		g2d.setColor(new Color(40, 40, 40));
 			
 		//Draw selected dots
 		if(tl) {
-			
-			dotPosX = middle - step + offsetX;
-			dotPosY = middle - step + offsetY;
+			dotPosX = middle - step + offset;
+			dotPosY = middle - step + offset;
 			
 			g2d.fillOval(dotPosX, dotPosY, dotSize, dotSize);
 		}
 		if(tm) {
-			dotPosX = middle + offsetX;
-			dotPosY = middle - step + offsetY;
+			dotPosX = middle + offset;
+			dotPosY = middle - step + offset;
 
 			g2d.fillOval(dotPosX, dotPosY, dotSize, dotSize);
 		}
 		if(tr) {
-			dotPosX = middle + step + offsetX;
-			dotPosY = middle - step + offsetY;
+			dotPosX = middle + step + offset;
+			dotPosY = middle - step + offset;
 
 			g2d.fillOval(dotPosX, dotPosY, dotSize, dotSize);
 		}
 		if(mid) {
-			dotPosX = middle + offsetX;
-			dotPosY = middle + offsetY;
+			dotPosX = middle + offset;
+			dotPosY = middle + offset;
 
 			g2d.fillOval(dotPosX, dotPosY, dotSize, dotSize);
 		}
 		if(bl) {
-			dotPosX = middle - step + offsetX;
-			dotPosY = middle + step + offsetY;
+			dotPosX = middle - step + offset;
+			dotPosY = middle + step + offset;
 			
 			g2d.fillOval(dotPosX, dotPosY, dotSize, dotSize);
 		}
 		if(bm) {
-			dotPosX = middle + offsetX;
-			dotPosY = middle + step + offsetY;
+			dotPosX = middle + offset;
+			dotPosY = middle + step + offset;
 
 			g2d.fillOval(dotPosX, dotPosY, dotSize, dotSize);
 		}
 		if(br) {
-			dotPosX = middle + step + offsetX;
-			dotPosY = middle + step + offsetY;
+			dotPosX = middle + step + offset;
+			dotPosY = middle + step + offset;
 
 			g2d.fillOval(dotPosX, dotPosY, dotSize, dotSize);
 		}
 	}
-	
-	
-
 }

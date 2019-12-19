@@ -23,6 +23,8 @@ public class MainFrame extends JFrame {
 	
 	private GuessPanel guessPanel;
 	
+	private ThrowPanel throwPanel;
+	
 	/**
 	 * Creates main JFrame and adds all the panels
 	 * @see JFrame
@@ -45,8 +47,8 @@ public class MainFrame extends JFrame {
 		header.setBounds(0, 0, 800, Header.HEIGHT);
 		add(header);
 		
-		dicePanel = new DicePanel();
 		int dPX = (800-716) / 2;
+		dicePanel = new DicePanel(716, 250);
 		dicePanel.setBounds(dPX, 100, 716, 250);
 		add(dicePanel);
 		
