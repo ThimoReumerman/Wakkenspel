@@ -1,6 +1,7 @@
 package wakkenspel;
 
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 /**
  * The MainFrame class creates the JFrame where all the other panels will be running on
@@ -15,22 +16,25 @@ public class MainFrame extends JFrame {
 
 	
 	/** The background panel */
-	private Background background;
+	public Background background;
 	
-	private Header header;
+	public Header header;
 	
-	private DicePanel dicePanel;
+	public DicePanel dicePanel;
 	
-	private GuessPanel guessPanel;
+	public GuessPanel guessPanel;
 	
-	private ThrowPanel throwPanel;
+	public ThrowPanel throwPanel;
+	
+	GameManager manager;
 	
 	/**
 	 * Creates main JFrame and adds all the panels
 	 * @see JFrame
 	 */
 	public MainFrame() {
-		
+	
+
 		//Set frame name
 		super(Application.title);
 		
@@ -43,7 +47,7 @@ public class MainFrame extends JFrame {
 		setLayout(null);
 		
 		//Add panels
-		header = new Header();
+		header = new Header(this);
 		header.setBounds(0, 0, 800, Header.HEIGHT);
 		add(header);
 		
@@ -56,11 +60,15 @@ public class MainFrame extends JFrame {
 		guessPanel.setBounds(dPX, 425, GuessPanel.WIDTH, GuessPanel.HEIGHT);
 		add(guessPanel);
 		
+		throwPanel = new ThrowPanel();
+		int tPX = (800-230) / 2;
+		throwPanel.setBounds(tPX, 380, 230, 170);
+		add(throwPanel);
+		
 		background = new Background();
 		background.setBounds(0, 0, 800, 800);
 		add(background);
-		
-		
+
 		//Make frame visible
 		setVisible(true);
 	}

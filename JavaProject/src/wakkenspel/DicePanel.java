@@ -30,6 +30,8 @@ public class DicePanel extends JPanel {
 	int xMid;
 	int yMid;
 	
+	public Dice[] diceArray = new Dice[12];
+	
 	
 	
 	/** Constructor of the Dice Panel. Sets opacity and background color */
@@ -47,13 +49,14 @@ public class DicePanel extends JPanel {
 		System.out.println("W: " + xMid + "H: " + yMid);
 		
 		throwDice();
+		
 	}
 	
 	/** Throw the dice */	
 	public void throwDice() {
 		int diceBoundsX = Dice.size * 6 + diceStep * 5; //Bounds on the horizontal axis
 		int diceBoundsY = Dice.size * 2 + diceStep; //Bounds on the vertical axis
-		int toThrow = 4; //Amount of dice to throw
+		int toThrow = 12; //Amount of dice to throw
 		int index = 0; //Index of dice
 		
 		//Loop through the dice to create the grid
@@ -67,10 +70,19 @@ public class DicePanel extends JPanel {
 					
 					System.out.println("Dice " + index + "| " +  x + " " + y + " " + Dice.size + " " + Dice.size);
 					
-					Dice dice = new Dice();
-					dice.setBounds(x, y, Dice.size, Dice.size);
-					dice.setVisible(true);
-					add(dice);
+
+					if (diceArray[index] != null) {
+						diceArray[index].setVisible(false);
+						diceArray[index] = null;
+					} else {
+						Dice dice = new Dice();
+						dice.setBounds(x, y, Dice.size, Dice.size);
+						dice.setVisible(true);
+						add(dice);
+						
+						diceArray[index] = dice;
+					}
+
 					
 					index++;			
 				} else {
@@ -79,6 +91,7 @@ public class DicePanel extends JPanel {
 			}
 		}
 	}
+	
 	
 	/** Creates a grid for the dice and calls the dice draw function
 	 * @see Dice */	

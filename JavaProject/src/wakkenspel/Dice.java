@@ -23,6 +23,13 @@ public class Dice extends JPanel {
 	/** Arc of the dice */
 	public static int arc = 10;
 	
+	/** Dots in the middle of the dice */
+	public int wakken = 0;
+	/** Dots around the wakken */
+	public int ijsberen = 0;
+	/** Dots on the other side of the dice */
+	public int penguins = 0;
+	
 	boolean tl, tm, tr, mid, bl, bm, br;
 	
 	public Dice() {
@@ -31,21 +38,32 @@ public class Dice extends JPanel {
 		switch (value) {
 			case 1:
 				createDice(false, false, false, true, false, false, false);
+				wakken = 1;
+				penguins = 6;
 				break;
 			case 2:
 				createDice(true, false, false, false, false, false, true);
+				penguins = 5;
 				break;
 			case 3:
 				createDice(true, false, false, true, false, false, true);
+				wakken = 1;
+				ijsberen = 2;
+				penguins = 4;
 				break;
 			case 4:
 				createDice(true, false, true, false, true, false, true);
+				penguins = 3;
 				break;
 			case 5:
 				createDice(true, false, true, true, true, false, true);
+				wakken = 1;
+				ijsberen = 4;
+				penguins = 2;
 				break;
 			case 6:
 				createDice(true, true, true, false, true, true, true);
+				penguins = 1;
 				break;
 			default:
 				createDice(false, false, false, false, false, false, false);
@@ -84,7 +102,11 @@ public class Dice extends JPanel {
 		
 		//Draw dice object
 		g2d.setColor(new Color(216, 216, 216));
-		g2d.fillRoundRect(0, 0, size, size, 15, 15);
+		g2d.fillRoundRect(1, 1, size - 2, size - 2, 15, 15);
+		
+		g2d.setColor(new Color(40, 40, 40));
+		g2d.setStroke(new BasicStroke(2));
+		g2d.drawRoundRect(1, 1, size - 2, size - 2, 15, 15);
 		
 		
 		//Set dot properties

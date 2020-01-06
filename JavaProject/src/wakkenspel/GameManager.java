@@ -7,9 +7,16 @@ package wakkenspel;
  * @version 0.1
  */
 public class GameManager {
+	MainFrame mainFrame;
+	
+	public GameManager(MainFrame _mainFrame) {
+		mainFrame = _mainFrame;
+	}
 	
 	/** Create a new game */
-	public static void newGame() {
+	public void newGame() {
 		System.out.println("Starting new game");
+		mainFrame.dicePanel.throwDice();
+	
 	}
 }

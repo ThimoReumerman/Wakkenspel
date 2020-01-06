@@ -1,5 +1,7 @@
 package wakkenspel;
 
+import javax.swing.SwingUtilities;
+
 /**
  * The only function of the Application class is to enable the MainFrame
  * @author Thimo Reumerman 97050932
@@ -16,7 +18,12 @@ public class Application {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		MainFrame mainFrame = new MainFrame();
+		SwingUtilities.invokeLater(new Runnable () {
+			public void run() {
+				MainFrame mainFrame = new MainFrame();
+			}
+		});
+		
 	}
 
 }

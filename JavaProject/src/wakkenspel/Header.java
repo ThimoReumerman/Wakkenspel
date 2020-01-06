@@ -34,9 +34,13 @@ public class Header extends JPanel implements ActionListener {
 	private JButton newGameButton;
 	/** Name of the game */
 	private JLabel name;
+	/** GameManager */
+	MainFrame mainFrame;
 	
 	/** Constructor of header draws the games name and the newGame button */
-	public Header() {
+	public Header(MainFrame _mainFrame) {
+		
+		mainFrame = _mainFrame;
 		
 		//Set color of header
 		color = new Color(38, 38, 38);
@@ -84,7 +88,7 @@ public class Header extends JPanel implements ActionListener {
 		// TODO Auto-generated method stub
 		
 		if(newGameButton.isEnabled()) {
-			GameManager.newGame();
+			mainFrame.dicePanel.throwDice();
 		}
 		
 	}

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class ThrowPanel extends JPanel implements ActionListener {
@@ -13,6 +14,8 @@ public class ThrowPanel extends JPanel implements ActionListener {
 	
 	/** Color of the GuessPanel */
 	private Color color = new Color(0, 0, 0, 90);
+	
+	private JLabel iconLabel;
 
 	public ThrowPanel() {
 		
