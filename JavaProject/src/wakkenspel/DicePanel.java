@@ -48,15 +48,19 @@ public class DicePanel extends JPanel {
 		
 		System.out.println("W: " + xMid + "H: " + yMid);
 		
-		throwDice();
+//		throwDice(9);
 		
 	}
 	
 	/** Throw the dice */	
-	public void throwDice() {
+	public void throwDice(int toThrow) {
+		
+		//Reset dice grid
+		diceArray.forEach((n) -> n.setVisible(false));
+		diceArray.clear();
+		
 		int diceBoundsX = Dice.size * 6 + diceStep * 5; //Bounds on the horizontal axis
 		int diceBoundsY = Dice.size * 2 + diceStep; //Bounds on the vertical axis
-		int toThrow = 7; //Amount of dice to throw
 		int index = 0; //Index of dice
 		
 		//Loop through the dice to create the grid
@@ -89,13 +93,6 @@ public class DicePanel extends JPanel {
 	}
 	
 
-	public void manageDice (boolean b) {
-		System.out.println("Managing dice");
-		
-		diceArray.forEach((n) -> n.setVisible(false));
-		diceArray.clear();
-		throwDice();
-	}
 	
 	
 	/** Creates a grid for the dice and calls the dice draw function
@@ -104,8 +101,6 @@ public class DicePanel extends JPanel {
 		
 		//Set super paint component
 		super.paintComponent(g);
-		
-		System.out.println("Drawing dicePanel");
 		
 		//Enable anti aliasing
 		Graphics2D g2d = (Graphics2D) g;

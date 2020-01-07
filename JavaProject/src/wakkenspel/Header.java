@@ -83,22 +83,15 @@ public class Header extends JPanel implements ActionListener {
 		
 		
 	}
-	
-	boolean isHidden = false;
+
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 		if(newGameButton.isEnabled()) {
-			if (isHidden) {
-				mainFrame.dicePanel.manageDice(true);
-				isHidden = !isHidden;
-			} else {
-				mainFrame.dicePanel.manageDice(false);
-				isHidden = !isHidden;
-			}
 
+//			mainFrame.dicePanel.manageDice();
 		}
 		
 	}

@@ -26,7 +26,7 @@ public class MainFrame extends JFrame {
 	
 	public ThrowPanel throwPanel;
 	
-	GameManager manager;
+	public SolutionPanel solutionPanel;
 	
 	/**
 	 * Creates main JFrame and adds all the panels
@@ -60,10 +60,14 @@ public class MainFrame extends JFrame {
 		guessPanel.setBounds(dPX, 425, GuessPanel.WIDTH, GuessPanel.HEIGHT);
 		add(guessPanel);
 		
-		throwPanel = new ThrowPanel();
+		throwPanel = new ThrowPanel(this);
 		int tPX = (800-230) / 2;
 		throwPanel.setBounds(tPX, 380, 230, 170);
 		add(throwPanel);
+		
+		solutionPanel = new SolutionPanel(this);
+		solutionPanel.setBounds(548, 375, 210, 340);
+		add(solutionPanel);
 		
 		background = new Background();
 		background.setBounds(0, 0, 800, 800);
@@ -71,6 +75,36 @@ public class MainFrame extends JFrame {
 
 		//Make frame visible
 		setVisible(true);
+	}
+	
+	int thrown = 0;
+
+	public void throwDice(int num) {
+		
+		if (num >= 3 && num <= 12) {
+			System.out.println("Throwing " + num + " dice.");
+			dicePanel.throwDice(num);
+			dicePanel.throwDice(num);
+			thrown += 1;		
+		}
+//		showSolution();
+	}
+	
+	
+	
+	public void showSolution() {
+		int pinguins = 0;
+		int wakken = 0;
+		int ijsberen = 0;
+		
+		System.out.println("Showing solution...");
+		for (Dice dice : dicePanel.diceArray) {
+			pinguins += dice.pinguins;
+			wakken += dice.wakken;
+			ijsberen += dice.ijsberen;
+		}
+		
+		solutionPanel.setSolution(pinguins, wakken, ijsberen);
 	}
 	
 
