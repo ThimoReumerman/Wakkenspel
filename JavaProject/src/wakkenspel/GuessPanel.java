@@ -37,15 +37,15 @@ public class GuessPanel extends JPanel implements ActionListener {
 	/** Label of the title **/
 	private JLabel title;
 	/** Textfield of the wakken */
-	private JTextField wakken;
+	public JTextField wakken;
 	/** Label of the wakken */
 	private JLabel wakkenLabel;
 	/** Textfield of the ijsberen */
-	private JTextField ijsberen;
+	public JTextField ijsberen;
 	/** Label of the ijsberen */
 	private JLabel ijsberenLabel;
 	/** Textfield of the pinguins */
-	private JTextField pinguins;
+	public JTextField pinguins;
 	/** Label of the pinguins */
 	private JLabel pinguinsLabel;
 	/** Button to check the values of the guessed variables */
@@ -169,9 +169,7 @@ public class GuessPanel extends JPanel implements ActionListener {
 			int ijsberenNum = parse(ijsberen.getText());
 			int pinguinsNum = parse(pinguins.getText());
 			
-			System.out.println("Wakken: " + wakkenNum);
-			System.out.println("IJsberen: " + ijsberenNum);
-			System.out.println("Pinguins: " + pinguinsNum);
+			mainFrame.manageGuess(wakkenNum, ijsberenNum, pinguinsNum);
 		}
 		
 	}

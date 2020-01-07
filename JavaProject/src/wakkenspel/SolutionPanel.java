@@ -39,6 +39,12 @@ public class SolutionPanel extends JPanel implements ActionListener {
 	private JTextField pinguins;
 	/** Label of the pinguins */
 	private JLabel pinguinsLabel;
+	private JTextField geraad;
+	private JTextField goed;
+	private JTextField fout;
+	private JLabel geraadLabel;
+	private JLabel goedLabel;
+	private JLabel foutLabel;
 	
 	MainFrame mainFrame;
 	
@@ -136,6 +142,60 @@ public class SolutionPanel extends JPanel implements ActionListener {
 		add(pinguinsLabel);
 		
 		
+		
+		//Set gegooid textfield
+		geraad = new JTextField("0");
+		geraad.setHorizontalAlignment(SwingConstants.RIGHT);
+		geraad.setForeground(Color.WHITE);
+		geraad.setBackground(new Color(27, 172, 66));
+		geraad.setFont(new Font("TAHOMA", Font.PLAIN, 17));
+		geraad.setBorder(BorderFactory.createEmptyBorder());
+		geraad.setBounds(30, 255, 50, 22);
+		geraad.setEditable(false);
+		add(geraad);
+		
+		//Set wakken label
+		geraadLabel = new JLabel("Geraden");
+		geraadLabel.setForeground(Color.WHITE);
+		geraadLabel.setFont(new Font("TAHOMA", Font.PLAIN, 20));
+		geraadLabel.setBounds(100, 255, 100, 25);
+		add(geraadLabel);
+		
+		//Set goed textfield
+		goed = new JTextField("0");
+		goed.setHorizontalAlignment(SwingConstants.RIGHT);
+		goed.setForeground(Color.WHITE);
+		goed.setBackground(new Color(27, 172, 66));
+		goed.setFont(new Font("TAHOMA", Font.PLAIN, 17));
+		goed.setBorder(BorderFactory.createEmptyBorder());
+		goed.setBounds(30, 285, 50, 22);
+		goed.setEditable(false);
+		add(goed);
+		
+		//Set goed label
+		goedLabel = new JLabel("Goed");
+		goedLabel.setForeground(Color.WHITE);
+		goedLabel.setFont(new Font("TAHOMA", Font.PLAIN, 20));
+		goedLabel.setBounds(100, 285, 100, 25);
+		add(goedLabel);
+		
+		//Set fout textfield
+		fout = new JTextField("0");
+		fout.setHorizontalAlignment(SwingConstants.RIGHT);
+		fout.setForeground(Color.WHITE);
+		fout.setBackground(new Color(27, 172, 66));
+		fout.setFont(new Font("TAHOMA", Font.PLAIN, 17));
+		fout.setBorder(BorderFactory.createEmptyBorder());
+		fout.setBounds(30, 315, 50, 22);
+		fout.setEditable(false);
+		add(fout);
+		
+		//Set fout label
+		foutLabel = new JLabel("Fout");
+		foutLabel.setForeground(Color.WHITE);
+		foutLabel.setFont(new Font("TAHOMA", Font.PLAIN, 20));
+		foutLabel.setBounds(100, 315, 100, 25);
+		add(foutLabel);
 	}
 	
 	public void setSolution(int pinguinsNum, int wakkenNum, int ijsberenNum) {
@@ -143,6 +203,12 @@ public class SolutionPanel extends JPanel implements ActionListener {
 		pinguins.setText(Integer.toString(pinguinsNum));
 		wakken.setText(Integer.toString(wakkenNum));
 		ijsberen.setText(Integer.toString(ijsberenNum));
+	}
+	
+	public void setGuesses(int guesses, int wrong, int correct) {
+		geraad.setText(Integer.toString(guesses));
+		fout.setText(Integer.toString(wrong));
+		goed.setText(Integer.toString(correct));
 	}
 
 	@Override

@@ -91,7 +91,7 @@ public class Header extends JPanel implements ActionListener {
 		
 		if(newGameButton.isEnabled()) {
 
-//			mainFrame.dicePanel.manageDice();
+			mainFrame.newGame();
 		}
 		
 	}

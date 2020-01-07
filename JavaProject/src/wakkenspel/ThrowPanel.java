@@ -26,7 +26,7 @@ public class ThrowPanel extends JPanel implements ActionListener {
 	/** Label of the title */
 	private JLabel title;
 	/** Textfield of the amount of dice */
-	private JTextField amount;
+	public JTextField amount;
 	/** Button to draw the dice */
 	private JButton throwDice;
 	

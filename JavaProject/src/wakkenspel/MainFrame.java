@@ -28,6 +28,8 @@ public class MainFrame extends JFrame {
 	
 	public SolutionPanel solutionPanel;
 	
+	public TipsPanel tipsPanel;
+	
 	/**
 	 * Creates main JFrame and adds all the panels
 	 * @see JFrame
@@ -66,8 +68,12 @@ public class MainFrame extends JFrame {
 		add(throwPanel);
 		
 		solutionPanel = new SolutionPanel(this);
-		solutionPanel.setBounds(548, 375, 210, 340);
+		solutionPanel.setBounds(548, 375, 210, 355);
 		add(solutionPanel);
+		
+		tipsPanel = new TipsPanel(this);
+		tipsPanel.setBounds(275, 560, 250, 195);
+		add(tipsPanel);
 		
 		background = new Background();
 		background.setBounds(0, 0, 800, 800);
@@ -75,6 +81,25 @@ public class MainFrame extends JFrame {
 
 		//Make frame visible
 		setVisible(true);
+	}
+	
+	public void newGame() {
+		guessPanel.ijsberen.setText("0");
+		guessPanel.pinguins.setText("0");
+		guessPanel.wakken.setText("0");
+		
+		solutionPanel.setSolution(0, 0, 0);
+		solutionPanel.setGuesses(0, 0, 0);
+		
+		throwPanel.amount.setText("0");
+		
+		for(Dice dice : dicePanel.diceArray) {
+			dice.setVisible(false);
+		}
+		
+		tipsPanel.tip.setText(" Veel success!");
+		
+		dicePanel.diceArray.clear();
 	}
 	
 	int thrown = 0;
@@ -86,11 +111,49 @@ public class MainFrame extends JFrame {
 			dicePanel.throwDice(num);
 			dicePanel.throwDice(num);
 			thrown += 1;		
+		} else {
+			showTip("Je moet tussen de 3 en 12 dobbelstenen werpen!");
 		}
-//		showSolution();
 	}
 	
+	public void showTip (String tip) {
+		tipsPanel.changeTip(tip);
+	}
 	
+	public void getSolution () {
+		
+	}
+	
+	int guesses = 0;
+	int wrong = 0;
+	int correct = 0;
+	public void manageGuess(int wakken, int ijsberen, int pinguins) {
+		int pinguinsSol = 0;
+		int wakkenSol = 0;
+		int ijsberenSol = 0;
+		
+		System.out.println("Showing solution...");
+		for (Dice dice : dicePanel.diceArray) {
+			pinguinsSol += dice.pinguins;
+			wakkenSol += dice.wakken;
+			ijsberenSol += dice.ijsberen;
+		}
+		
+		boolean isCorrect = true;
+		
+		if(pinguins != pinguinsSol || wakken != wakkenSol || ijsberen != ijsberenSol) {
+			isCorrect = false;
+		}
+		
+		guesses++;
+		if(isCorrect) {
+			correct++;
+		} else {
+			wrong++;
+		}
+		
+		solutionPanel.setGuesses(guesses, wrong, correct);
+	}
 	
 	public void showSolution() {
 		int pinguins = 0;
