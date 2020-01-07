@@ -51,8 +51,11 @@ public class GuessPanel extends JPanel implements ActionListener {
 	/** Button to check the values of the guessed variables */
 	private JButton check;
 	
+	MainFrame mainFrame;
+	
 	/** Constructor that draws the GuessPanel and its attributes */
-	public GuessPanel() {
+	public GuessPanel(MainFrame _mainFrame) {
+		mainFrame = _mainFrame;
 		
 		//Set color of panel
 		setOpaque(true);
@@ -161,7 +164,7 @@ public class GuessPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(check.isEnabled()) {
+		if(check.isEnabled()) {			
 			int wakkenNum = parse(wakken.getText());
 			int ijsberenNum = parse(ijsberen.getText());
 			int pinguinsNum = parse(pinguins.getText());

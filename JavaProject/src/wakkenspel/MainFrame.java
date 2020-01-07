@@ -56,7 +56,7 @@ public class MainFrame extends JFrame {
 		dicePanel.setBounds(dPX, 100, 716, 250);
 		add(dicePanel);
 		
-		guessPanel = new GuessPanel();
+		guessPanel = new GuessPanel(this);
 		guessPanel.setBounds(dPX, 425, GuessPanel.WIDTH, GuessPanel.HEIGHT);
 		add(guessPanel);
 		

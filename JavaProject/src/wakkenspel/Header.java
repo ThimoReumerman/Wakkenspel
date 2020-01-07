@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  * The Header class draws the header, displaying the game's name and a new game button
@@ -82,13 +83,22 @@ public class Header extends JPanel implements ActionListener {
 		
 		
 	}
+	
+	boolean isHidden = false;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 		if(newGameButton.isEnabled()) {
-			mainFrame.dicePanel.throwDice();
+			if (isHidden) {
+				mainFrame.dicePanel.manageDice(true);
+				isHidden = !isHidden;
+			} else {
+				mainFrame.dicePanel.manageDice(false);
+				isHidden = !isHidden;
+			}
+
 		}
 		
 	}

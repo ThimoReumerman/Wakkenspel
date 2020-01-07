@@ -5,8 +5,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 /**
@@ -30,7 +30,7 @@ public class DicePanel extends JPanel {
 	int xMid;
 	int yMid;
 	
-	public Dice[] diceArray = new Dice[12];
+	public ArrayList<Dice> diceArray = new ArrayList<Dice>();
 	
 	
 	
@@ -38,9 +38,9 @@ public class DicePanel extends JPanel {
 	public DicePanel(int width, int height) {
 		
 		//Set color of panel
-		setOpaque(true);
-		setBackground(color);
+		setOpaque(false);
 		setLayout(null);
+		
 		
 		//Create dice grid
 		xMid = width / 2; //Center of horizontal axis
@@ -56,7 +56,7 @@ public class DicePanel extends JPanel {
 	public void throwDice() {
 		int diceBoundsX = Dice.size * 6 + diceStep * 5; //Bounds on the horizontal axis
 		int diceBoundsY = Dice.size * 2 + diceStep; //Bounds on the vertical axis
-		int toThrow = 12; //Amount of dice to throw
+		int toThrow = 7; //Amount of dice to throw
 		int index = 0; //Index of dice
 		
 		//Loop through the dice to create the grid
@@ -68,20 +68,16 @@ public class DicePanel extends JPanel {
 					int x = xMid - diceBoundsX / 2 + (Dice.size + diceStep) * col;
 					int y = yMid - diceBoundsY / 2 + (Dice.size + diceStep) * row;
 					
-					System.out.println("Dice " + index + "| " +  x + " " + y + " " + Dice.size + " " + Dice.size);
+//					System.out.println("Dice " + index + "| " +  x + " " + y + " " + Dice.size + " " + Dice.size);
 					
-
-					if (diceArray[index] != null) {
-						diceArray[index].setVisible(false);
-						diceArray[index] = null;
-					} else {
-						Dice dice = new Dice();
-						dice.setBounds(x, y, Dice.size, Dice.size);
-						dice.setVisible(true);
-						add(dice);
-						
-						diceArray[index] = dice;
-					}
+					
+					Dice dice = new Dice();
+					dice.setBounds(x, y, Dice.size, Dice.size);
+					dice.setVisible(true);
+					add(dice);
+					
+					diceArray.add(dice);
+		
 
 					
 					index++;			
@@ -90,6 +86,15 @@ public class DicePanel extends JPanel {
 				}
 			}
 		}
+	}
+	
+
+	public void manageDice (boolean b) {
+		System.out.println("Managing dice");
+		
+		diceArray.forEach((n) -> n.setVisible(false));
+		diceArray.clear();
+		throwDice();
 	}
 	
 	
@@ -105,6 +110,10 @@ public class DicePanel extends JPanel {
 		//Enable anti aliasing
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		
+//		g2d.clearRect(getX(), getY(), getWidth(), getHeight());
+		g2d.setColor(color);
+		g2d.fillRect(0, 0, getWidth(), getHeight());
 		
 		//Create dice grid
 		int xMid = getWidth() / 2; //Center of horizontal axis

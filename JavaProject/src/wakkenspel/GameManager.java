@@ -6,6 +6,7 @@ package wakkenspel;
  * @since 4-12-2019 
  * @version 0.1
  */
+
 public class GameManager {
 	MainFrame mainFrame;
 	
@@ -16,7 +17,7 @@ public class GameManager {
 	/** Create a new game */
 	public void newGame() {
 		System.out.println("Starting new game");
-		mainFrame.dicePanel.throwDice();
+		
 	
 	}
 }

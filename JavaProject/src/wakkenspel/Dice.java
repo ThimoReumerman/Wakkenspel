@@ -32,6 +32,8 @@ public class Dice extends JPanel {
 	
 	boolean tl, tm, tr, mid, bl, bm, br;
 	
+	public String diceName;
+	
 	public Dice() {
 		int value = (int)(Math.random() * 6) + 1;
 		
@@ -40,30 +42,36 @@ public class Dice extends JPanel {
 				createDice(false, false, false, true, false, false, false);
 				wakken = 1;
 				penguins = 6;
+				diceName = "One";
 				break;
 			case 2:
 				createDice(true, false, false, false, false, false, true);
 				penguins = 5;
+				diceName = "Two";
 				break;
 			case 3:
 				createDice(true, false, false, true, false, false, true);
 				wakken = 1;
 				ijsberen = 2;
 				penguins = 4;
+				diceName = "Three";
 				break;
 			case 4:
 				createDice(true, false, true, false, true, false, true);
 				penguins = 3;
+				diceName = "Four";
 				break;
 			case 5:
 				createDice(true, false, true, true, true, false, true);
 				wakken = 1;
 				ijsberen = 4;
 				penguins = 2;
+				diceName = "Five";
 				break;
 			case 6:
 				createDice(true, true, true, false, true, true, true);
 				penguins = 1;
+				diceName = "Six";
 				break;
 			default:
 				createDice(false, false, false, false, false, false, false);
@@ -82,13 +90,14 @@ public class Dice extends JPanel {
 		bm = _bm;
 		br = _br;
 		
-		repaint();
+		revalidate();
 	}
 	
 	public void paintComponent (Graphics g) {
 		
 		//Set super paint component
 		super.paintComponent(g);
+		
 		
 		//Disable built-in layout manager
 		setLayout(null);
@@ -107,7 +116,6 @@ public class Dice extends JPanel {
 		g2d.setColor(new Color(40, 40, 40));
 		g2d.setStroke(new BasicStroke(2));
 		g2d.drawRoundRect(1, 1, size - 2, size - 2, 15, 15);
-		
 		
 		//Set dot properties
 		int step = 20; //Units between dots

@@ -30,6 +30,7 @@ public class Background extends JPanel {
 	 * @see Image
 	 */
 	public Background() {
+		System.out.println("Drawing background");
 		
 		//Try to set background image
 		try {
