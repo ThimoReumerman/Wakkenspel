@@ -11,36 +11,32 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
-/**
- * The Header class draws the header, displaying the game's name and a new game button
- * @author Thimo Reumerman 97050932
- * @since 4-12-2019 
- * @version 0.3
- */
+/** The Header class draws the game's name and a newGame button
+ * @author Thimo Reumerman 97050932 */
 public class Header extends JPanel implements ActionListener {
-	/** */
+
 	private static final long serialVersionUID = 1L;
-	
-	//Properties
+
 	/** Color of the header */
 	private Color color;
 	/** Height of the header */
 	public static int HEIGHT = 68;
 
-	//Swing
 	/** Button to start new game
 	 * @see GameManager.newGame */
 	private JButton newGameButton;
 	/** Name of the game */
 	private JLabel name;
-	/** GameManager */
+	
+	/** Mainframe of the application */
 	MainFrame mainFrame;
 	
-	/** Constructor of header draws the games name and the newGame button */
+	/** Draws the games name and a newGame button
+	 * @param _mainFrame Mainframe of the application */
 	public Header(MainFrame _mainFrame) {
 		
+		//Set mainframe
 		mainFrame = _mainFrame;
 		
 		//Set color of header
@@ -57,7 +53,6 @@ public class Header extends JPanel implements ActionListener {
 		name.setForeground(Color.WHITE);
 		add(name);
 		
-		
 		//Create newGame button		
 		ImageIcon newGameIcon = new ImageIcon("images/newGame.png");
 		newGameButton = new JButton(newGameIcon);
@@ -69,10 +64,13 @@ public class Header extends JPanel implements ActionListener {
 		
 		//Add mouse listener for effect on hover
 		newGameButton.addMouseListener(new MouseAdapter() {
+			
+			//Set icon when mouse hovers over newGame button
 			public void mouseEntered (MouseEvent evt) {
 				newGameButton.setIcon(new ImageIcon("images/newGameHover.png"));
 			}
 			
+			//Set icon when mouse doesn't hover over newGame button
 			public void mouseExited (MouseEvent evt) {
 				newGameButton.setIcon(new ImageIcon("images/newGame.png"));
 			}
@@ -80,22 +78,16 @@ public class Header extends JPanel implements ActionListener {
 		
 		//Add action listener to button
 		newGameButton.addActionListener(this);
-		
-		
-	}
 
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
 		if(newGameButton.isEnabled()) {
-
+			
+			//Create a new game
 			mainFrame.newGame();
 		}
-		
 	}
-	
-	
-
 }

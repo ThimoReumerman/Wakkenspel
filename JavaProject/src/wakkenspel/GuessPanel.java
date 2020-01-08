@@ -2,11 +2,9 @@ package wakkenspel;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,14 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-/**
- * The GuessPanel class creates the guess panel
- * @author Thimo Reumerman 97050932
- * @since 5-12-2019 
- * @version 0.1
- */
+/** The GuessPanel class draws the guess textfields
+ * @author Thimo Reumerman 97050932 */
 public class GuessPanel extends JPanel implements ActionListener {
-	/** */
+
 	private static final long serialVersionUID = 1L;
 	
 	/** Width of the GuessPanel */
@@ -31,6 +25,8 @@ public class GuessPanel extends JPanel implements ActionListener {
 	
 	/** Color of the GuessPanel */
 	private Color color = new Color(0, 0, 0, 90);
+	public Color textfieldColor = new Color(27, 172, 66);
+	public Color wrongGuessColor = new Color (172, 41, 27);
 	
 	/** Label of the icon */
 	private JLabel iconLabel;
@@ -51,10 +47,14 @@ public class GuessPanel extends JPanel implements ActionListener {
 	/** Button to check the values of the guessed variables */
 	private JButton check;
 	
+	/** MainFrame of the application */
 	MainFrame mainFrame;
 	
-	/** Constructor that draws the GuessPanel and its attributes */
+	/** Panel that has user input for the guesses
+	 * @param _mainFrame Mainframe of the application */
 	public GuessPanel(MainFrame _mainFrame) {
+		
+		//Set mainframe
 		mainFrame = _mainFrame;
 		
 		//Set color of panel
@@ -83,95 +83,59 @@ public class GuessPanel extends JPanel implements ActionListener {
 		
 		//Set wakken textfield
 		wakken = new JTextField("0");
-		wakken.setHorizontalAlignment(SwingConstants.RIGHT);
-		wakken.setForeground(Color.WHITE);
-		wakken.setBackground(new Color(27, 172, 66));
-		wakken.setFont(new Font("TAHOMA", Font.PLAIN, 17));
-		wakken.setBorder(BorderFactory.createEmptyBorder());
-		wakken.setBounds(30, 120, 50, 22);
+		mainFrame.setDefaultTextField(wakken, 30, 120, 50, 22);
 		add(wakken);
 		
 		//Set wakken label
 		wakkenLabel = new JLabel("Wakken");
-		wakkenLabel.setForeground(Color.WHITE);
-		wakkenLabel.setFont(new Font("TAHOMA", Font.PLAIN, 20));
-		wakkenLabel.setBounds(100, 120, 100, 25);
+		mainFrame.setDefaultLabel(wakkenLabel, 100, 120, 100, 25);
 		add(wakkenLabel);
 		
 		//Set ijsberen textfield
 		ijsberen = new JTextField("0");
-		ijsberen.setHorizontalAlignment(SwingConstants.RIGHT);
-		ijsberen.setForeground(Color.WHITE);
-		ijsberen.setBackground(new Color(27, 172, 66));
-		ijsberen.setFont(new Font("TAHOMA", Font.PLAIN, 17));
-		ijsberen.setBorder(BorderFactory.createEmptyBorder());
-		ijsberen.setBounds(30, 150, 50, 22);
+		mainFrame.setDefaultTextField(ijsberen, 30, 150, 50, 22);
 		add(ijsberen);
 		
 		//Set ijsberen label
 		ijsberenLabel = new JLabel("IJsberen");
-		ijsberenLabel.setForeground(Color.WHITE);
-		ijsberenLabel.setFont(new Font("TAHOMA", Font.PLAIN, 20));
-		ijsberenLabel.setBounds(100, 150, 100, 25);
+		mainFrame.setDefaultLabel(ijsberenLabel, 100, 150, 100, 25);
 		add(ijsberenLabel);
 		
 		//Set pinguins textfield
 		pinguins = new JTextField("0");
-		pinguins.setHorizontalAlignment(SwingConstants.RIGHT);
-		pinguins.setForeground(Color.WHITE);
-		pinguins.setBackground(new Color(27, 172, 66));
-		pinguins.setFont(new Font("TAHOMA", Font.PLAIN, 17));
-		pinguins.setBorder(BorderFactory.createEmptyBorder());
-		pinguins.setBounds(30, 180, 50, 22);
+		mainFrame.setDefaultTextField(pinguins, 30, 180, 50, 22);
 		add(pinguins);
 		
-		//Set ijsberen label
+		//Set pinguins label
 		pinguinsLabel = new JLabel("Pinguïns");
-		pinguinsLabel.setForeground(Color.WHITE);
-		pinguinsLabel.setFont(new Font("TAHOMA", Font.PLAIN, 20));
-		pinguinsLabel.setBounds(100, 180, 100, 25);
+		mainFrame.setDefaultLabel(pinguinsLabel, 100, 180, 100, 25);
 		add(pinguinsLabel);
 		
 		//Set check button
 		check = new JButton("Controleren");
-		check.setForeground(Color.WHITE);
-		check.setBackground(new Color(8, 53, 20));
-		check.setFont(new Font("TAHOMA", Font.PLAIN, 20));
-		check.setBorderPainted(false);
-		check.setFocusPainted(false);
-		check.setBounds(middle - 140 / 2, 220, 140, 35);
+		mainFrame.setDefaultButton(check, middle - 140 / 2, 220, 140, 35);
 		add(check);
 		check.addActionListener(this);
-		
-		
-	}
-	
-	/** Parse an int from string
-	 * 
-	 * @param value String to parse
-	 * @return If a number, return parsed value of int<br>If not a number, return 0
-	 */
-	private int parse (String value) {
-		try {
-			int i = Integer.parseInt(value);
-			return i;
-		} catch (NumberFormatException e) {
-			return 0;
-		}
 	}
 	
 	/** Check for check button click and check the entered values*/
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(check.isEnabled()) {			
-			int wakkenNum = parse(wakken.getText());
-			int ijsberenNum = parse(ijsberen.getText());
-			int pinguinsNum = parse(pinguins.getText());
+		if(check.isEnabled()) {	
 			
+			//Reset textfield background
+			wakken.setBackground(textfieldColor);
+			ijsberen.setBackground(textfieldColor);
+			pinguins.setBackground(textfieldColor);
+			
+			//Parse user input
+			int wakkenNum = mainFrame.parse(wakken.getText());
+			int ijsberenNum = mainFrame.parse(ijsberen.getText());
+			int pinguinsNum = mainFrame.parse(pinguins.getText());
+			
+			//Manage the guess
 			mainFrame.manageGuess(wakkenNum, ijsberenNum, pinguinsNum);
 		}
-		
 	}
-
 }

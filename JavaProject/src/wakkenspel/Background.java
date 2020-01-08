@@ -10,27 +10,19 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-/**
- * The Background class draws a background image
- * @author Thimo Reumerman 97050932
- * @since 4-12-2019 
- * @version 0.2
- */
+/** The Background class draws a background image
+ * @author Thimo Reumerman 97050932 */
 public class Background extends JPanel {
 	
-	/** Serial version UID of JPanel */
 	private static final long serialVersionUID = 1L;
 	
 	/** Image to draw background with */
 	private Image backgroundImage;
 
-	/**
-	 * Draw panel with background image
+	/** Draw panel with background image
 	 * @see JPanel
-	 * @see Image
-	 */
+	 * @see Image */
 	public Background() {
-		System.out.println("Drawing background");
 		
 		//Try to set background image
 		try {
@@ -42,7 +34,6 @@ public class Background extends JPanel {
 			//Print default error message
 			e.printStackTrace();
 		}
-
 	}
 	
 	public void paintComponent(Graphics g) {

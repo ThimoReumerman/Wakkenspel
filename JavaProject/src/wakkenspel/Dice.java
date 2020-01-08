@@ -8,14 +8,10 @@ import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
-/**
- * The Dice class draws the empty dice
- * @author Thimo Reumerman 97050932
- * @since 5-12-2019 
- * @version 0.1
- */
+/** The Dice class contains variables for the dice and draws the dice itself
+ * @author Thimo Reumerman 97050932 */
 public class Dice extends JPanel {
-	/** */
+
 	private static final long serialVersionUID = 1L;
 	
 	/** Size of the dice */
@@ -30,13 +26,28 @@ public class Dice extends JPanel {
 	/** Dots on the other side of the dice */
 	public int pinguins = 0;
 	
-	boolean tl, tm, tr, mid, bl, bm, br;
+	/** Top left dot on dice */
+	boolean tl;
+	/** Top middle dot on dice */
+	boolean tm;
+	/** Top right dot on dice */
+	boolean tr;
+	/** Middle dot on dice */
+	boolean mid;
+	/** Bottom left dot on dice */
+	boolean bl;
+	/** Bottom middle dot on dice */
+	boolean bm;
+	/** Bottom right dot on dice */
+	boolean br;
 	
-	public String diceName;
-	
+	/** Throws a dice and stores its variables */	
 	public Dice() {
+		
+		//Get random dice value
 		int value = (int)(Math.random() * 6) + 1;
 		
+		//Set correct parameters based on the value thrown
 		switch (value) {
 			case 1:
 				createDice(false, false, false, true, false, false, false);
@@ -71,11 +82,21 @@ public class Dice extends JPanel {
 				createDice(false, false, false, false, false, false, false);
 		}
 	}
-
+	
+	/** Draws the dice
+	 * @param _tl Draw a dot on the top left of the dice
+	 * @param _tm Draw a dot on the top middle of the dice
+	 * @param _tr Draw a dot on the top right of the dice
+	 * @param _mid Draw a dot on the middle of the dice
+	 * @param _bl Draw a dot on the bottom left of the dice
+	 * @param _bm Draw a dot on the bottom middle of the dice
+	 * @param _br Draw a dot on the bottom right of the dice */
 	public void createDice(boolean _tl, boolean _tm, boolean _tr, boolean _mid, boolean _bl, boolean _bm, boolean _br) {
-		setOpaque(true);
-		setBackground(new Color(0, 0, 0, 0));
 		
+		//Get rid of background
+		setOpaque(false);
+		
+		//Set dots to draw
 		tl = _tl;
 		tm = _tm;
 		tr = _tr;
@@ -84,6 +105,7 @@ public class Dice extends JPanel {
 		bm = _bm;
 		br = _br;
 		
+		//Paint the dice
 		revalidate();
 	}
 	
@@ -91,7 +113,6 @@ public class Dice extends JPanel {
 		
 		//Set super paint component
 		super.paintComponent(g);
-		
 		
 		//Disable built-in layout manager
 		setLayout(null);
@@ -103,26 +124,28 @@ public class Dice extends JPanel {
 		//Set dice properties
 		int middle = size / 2;
 		
-		//Draw dice object
+		//Fill dice with color
 		g2d.setColor(new Color(216, 216, 216));
 		g2d.fillRoundRect(1, 1, size - 2, size - 2, 15, 15);
 		
+		//Add border to dice
 		g2d.setColor(new Color(40, 40, 40));
 		g2d.setStroke(new BasicStroke(2));
 		g2d.drawRoundRect(1, 1, size - 2, size - 2, 15, 15);
 		
 		//Set dot properties
 		int step = 20; //Units between dots
-		int dotSize = 11;
+		int dotSize = 11; //Size of the dots
+		int dotPosX = 0; //Position of dot on x axis
+		int dotPosY = 0; //Position of dot on y axis
 		
-		int dotPosX = 0;
-		int dotPosY = 0;
-		
+		//Offset of dots		
 		int offset = (int)dotSize / -2;
 		
+		//Color of dots
 		g2d.setColor(new Color(40, 40, 40));
 			
-		//Draw selected dots
+		//Draw selected dots on correct position
 		if(tl) {
 			dotPosX = middle - step + offset;
 			dotPosY = middle - step + offset;

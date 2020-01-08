@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,9 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+/** The SolutionPanel class shows the solution and guesses
+ * @author Thimo Reumerman 97050932 */
 public class SolutionPanel extends JPanel implements ActionListener {
 
-	/** */
 	private static final long serialVersionUID = 1L;
 	
 	/** Color of the GuessPanel */
@@ -28,28 +28,38 @@ public class SolutionPanel extends JPanel implements ActionListener {
 	/** Button to show solution */
 	private JButton show;
 	/** Textfield of the wakken */
-	private JTextField wakken;
+	private JTextField wakkenTextField;
 	/** Label of the wakken */
 	private JLabel wakkenLabel;
 	/** Textfield of the ijsberen */
-	private JTextField ijsberen;
+	private JTextField ijsberenTextField;
 	/** Label of the ijsberen */
 	private JLabel ijsberenLabel;
 	/** Textfield of the pinguins */
-	private JTextField pinguins;
+	private JTextField pinguinsTextField;
 	/** Label of the pinguins */
 	private JLabel pinguinsLabel;
-	private JTextField geraad;
-	private JTextField goed;
-	private JTextField fout;
-	private JLabel geraadLabel;
-	private JLabel goedLabel;
-	private JLabel foutLabel;
+	/** Textfield of the guessed */
+	private JTextField guessedTextField;
+	/** Label of the guessed */
+	private JLabel guessedLabel;
+	/** Textfield of the correct guesses */
+	private JTextField correctTextField;
+	/** Label of the correct guesses */
+	private JLabel correctLabel;
+	/** Textfield of the wrong guesses */
+	private JTextField wrongTextField;
+	/** Label of the wrong guesses */
+	private JLabel wrongLabel;
 	
+	/** Mainframe of the application */
 	MainFrame mainFrame;
 	
-	/** Constructor that draws the GuessPanel and its attributes */
+	/** Panel that shows the solution and the guesses
+	 * @param _mainFrame Mainframe of the application */
 	public SolutionPanel(MainFrame _mainFrame) {
+		
+		//Set mainFrame
 		mainFrame = _mainFrame;
 		
 		//Set color of panel
@@ -59,10 +69,8 @@ public class SolutionPanel extends JPanel implements ActionListener {
 		//Disable layout
 		setLayout(null);
 		
-		//Create middle variable
-		int middle = 210 / 2;
-		
 		//Set icon label
+		int middle = 210 / 2;
 		ImageIcon icon = new ImageIcon("images/oplossing.png");
 		iconLabel = new JLabel(icon);
 		iconLabel.setBounds(middle - icon.getIconWidth() / 2, 5, icon.getIconWidth(), icon.getIconHeight());
@@ -78,137 +86,95 @@ public class SolutionPanel extends JPanel implements ActionListener {
 		
 		//Set show button
 		show = new JButton("Laat zien");
-		show.setForeground(Color.WHITE);
-		show.setBackground(new Color(8, 53, 20));
-		show.setFont(new Font("TAHOMA", Font.PLAIN, 20));
-		show.setBorderPainted(false);
-		show.setFocusPainted(false);
-		show.setBounds(30, 105, 150, 35);
+		mainFrame.setDefaultButton(show, 30, 105, 150, 35);
 		add(show);
 		show.addActionListener(this);
 		
 		//Set wakken textfield
-		wakken = new JTextField("0");
-		wakken.setHorizontalAlignment(SwingConstants.RIGHT);
-		wakken.setForeground(Color.WHITE);
-		wakken.setBackground(new Color(27, 172, 66));
-		wakken.setFont(new Font("TAHOMA", Font.PLAIN, 17));
-		wakken.setBorder(BorderFactory.createEmptyBorder());
-		wakken.setBounds(30, 155, 50, 22);
-		wakken.setEditable(false);
-		add(wakken);
+		wakkenTextField = new JTextField("0");
+		mainFrame.setDefaultTextField(wakkenTextField, 30, 155, 50, 22);
+		wakkenTextField.setEditable(false);
+		add(wakkenTextField);
 		
 		//Set wakken label
 		wakkenLabel = new JLabel("Wakken");
-		wakkenLabel.setForeground(Color.WHITE);
-		wakkenLabel.setFont(new Font("TAHOMA", Font.PLAIN, 20));
-		wakkenLabel.setBounds(100, 155, 100, 25);
+		mainFrame.setDefaultLabel(wakkenLabel, 100, 155, 100, 25);
 		add(wakkenLabel);
 		
 		//Set ijsberen textfield
-		ijsberen = new JTextField("0");
-		ijsberen.setHorizontalAlignment(SwingConstants.RIGHT);
-		ijsberen.setForeground(Color.WHITE);
-		ijsberen.setBackground(new Color(27, 172, 66));
-		ijsberen.setFont(new Font("TAHOMA", Font.PLAIN, 17));
-		ijsberen.setBorder(BorderFactory.createEmptyBorder());
-		ijsberen.setBounds(30, 185, 50, 22);
-		ijsberen.setEditable(false);
-		add(ijsberen);
+		ijsberenTextField = new JTextField("0");
+		mainFrame.setDefaultTextField(ijsberenTextField, 30, 185, 50, 22);
+		ijsberenTextField.setEditable(false);
+		add(ijsberenTextField);
 		
 		//Set ijsberen label
 		ijsberenLabel = new JLabel("IJsberen");
-		ijsberenLabel.setForeground(Color.WHITE);
-		ijsberenLabel.setFont(new Font("TAHOMA", Font.PLAIN, 20));
-		ijsberenLabel.setBounds(100, 185, 100, 25);
+		mainFrame.setDefaultLabel(ijsberenLabel, 100, 185, 100, 25);
 		add(ijsberenLabel);
 		
 		//Set pinguins textfield
-		pinguins = new JTextField("0");
-		pinguins.setHorizontalAlignment(SwingConstants.RIGHT);
-		pinguins.setForeground(Color.WHITE);
-		pinguins.setBackground(new Color(27, 172, 66));
-		pinguins.setFont(new Font("TAHOMA", Font.PLAIN, 17));
-		pinguins.setBorder(BorderFactory.createEmptyBorder());
-		pinguins.setBounds(30, 215, 50, 22);
-		pinguins.setEditable(false);
-		add(pinguins);
+		pinguinsTextField = new JTextField("0");
+		mainFrame.setDefaultTextField(pinguinsTextField, 30, 215, 50, 22);
+		pinguinsTextField.setEditable(false);
+		add(pinguinsTextField);
 		
-		//Set ijsberen label
+		//Set pinguins label
 		pinguinsLabel = new JLabel("Pinguïns");
-		pinguinsLabel.setForeground(Color.WHITE);
-		pinguinsLabel.setFont(new Font("TAHOMA", Font.PLAIN, 20));
-		pinguinsLabel.setBounds(100, 215, 100, 25);
+		mainFrame.setDefaultLabel(pinguinsLabel, 100, 215, 100, 25);
 		add(pinguinsLabel);
 		
+		//Set guesses textfield
+		guessedTextField = new JTextField("0");
+		mainFrame.setDefaultTextField(guessedTextField, 30, 255, 50, 22);
+		guessedTextField.setEditable(false);
+		add(guessedTextField);
 		
+		//Set guesses label
+		guessedLabel = new JLabel("Geraden");
+		mainFrame.setDefaultLabel(guessedLabel, 100, 255, 100, 25);
+		add(guessedLabel);
 		
-		//Set gegooid textfield
-		geraad = new JTextField("0");
-		geraad.setHorizontalAlignment(SwingConstants.RIGHT);
-		geraad.setForeground(Color.WHITE);
-		geraad.setBackground(new Color(27, 172, 66));
-		geraad.setFont(new Font("TAHOMA", Font.PLAIN, 17));
-		geraad.setBorder(BorderFactory.createEmptyBorder());
-		geraad.setBounds(30, 255, 50, 22);
-		geraad.setEditable(false);
-		add(geraad);
+		//Set correct guesses textfield
+		correctTextField = new JTextField("0");
+		mainFrame.setDefaultTextField(correctTextField, 30, 285, 50, 22);
+		correctTextField.setEditable(false);
+		add(correctTextField);
 		
-		//Set wakken label
-		geraadLabel = new JLabel("Geraden");
-		geraadLabel.setForeground(Color.WHITE);
-		geraadLabel.setFont(new Font("TAHOMA", Font.PLAIN, 20));
-		geraadLabel.setBounds(100, 255, 100, 25);
-		add(geraadLabel);
+		//Set correct guesses label
+		correctLabel = new JLabel("Goed");
+		mainFrame.setDefaultLabel(correctLabel, 100, 285, 100, 25);
+		add(correctLabel);
 		
-		//Set goed textfield
-		goed = new JTextField("0");
-		goed.setHorizontalAlignment(SwingConstants.RIGHT);
-		goed.setForeground(Color.WHITE);
-		goed.setBackground(new Color(27, 172, 66));
-		goed.setFont(new Font("TAHOMA", Font.PLAIN, 17));
-		goed.setBorder(BorderFactory.createEmptyBorder());
-		goed.setBounds(30, 285, 50, 22);
-		goed.setEditable(false);
-		add(goed);
+		//Set wrong guesses textfield
+		wrongTextField = new JTextField("0");
+		mainFrame.setDefaultTextField(wrongTextField, 30, 315, 50, 22);
+		wrongTextField.setEditable(false);
+		add(wrongTextField);
 		
-		//Set goed label
-		goedLabel = new JLabel("Goed");
-		goedLabel.setForeground(Color.WHITE);
-		goedLabel.setFont(new Font("TAHOMA", Font.PLAIN, 20));
-		goedLabel.setBounds(100, 285, 100, 25);
-		add(goedLabel);
-		
-		//Set fout textfield
-		fout = new JTextField("0");
-		fout.setHorizontalAlignment(SwingConstants.RIGHT);
-		fout.setForeground(Color.WHITE);
-		fout.setBackground(new Color(27, 172, 66));
-		fout.setFont(new Font("TAHOMA", Font.PLAIN, 17));
-		fout.setBorder(BorderFactory.createEmptyBorder());
-		fout.setBounds(30, 315, 50, 22);
-		fout.setEditable(false);
-		add(fout);
-		
-		//Set fout label
-		foutLabel = new JLabel("Fout");
-		foutLabel.setForeground(Color.WHITE);
-		foutLabel.setFont(new Font("TAHOMA", Font.PLAIN, 20));
-		foutLabel.setBounds(100, 315, 100, 25);
-		add(foutLabel);
+		//Set wrong guesses label
+		wrongLabel = new JLabel("Fout");
+		mainFrame.setDefaultLabel(wrongLabel, 100, 315, 100, 25);
+		add(wrongLabel);
 	}
 	
+	/** Fills the solution textfield
+	 * @param pinguinsNum Number of pinguins
+	 * @param wakkenNum Number of wakken
+	 * @param ijsberenNum Number of ijsberen */
 	public void setSolution(int pinguinsNum, int wakkenNum, int ijsberenNum) {
-		
-		pinguins.setText(Integer.toString(pinguinsNum));
-		wakken.setText(Integer.toString(wakkenNum));
-		ijsberen.setText(Integer.toString(ijsberenNum));
+		pinguinsTextField.setText(Integer.toString(pinguinsNum));
+		wakkenTextField.setText(Integer.toString(wakkenNum));
+		ijsberenTextField.setText(Integer.toString(ijsberenNum));
 	}
 	
+	/** Fills the guesses textfield
+	 * @param guesses Number of guesses
+	 * @param wrong Number of wrong guesses
+	 * @param correct Number of correct guesses */
 	public void setGuesses(int guesses, int wrong, int correct) {
-		geraad.setText(Integer.toString(guesses));
-		fout.setText(Integer.toString(wrong));
-		goed.setText(Integer.toString(correct));
+		guessedTextField.setText(Integer.toString(guesses));
+		wrongTextField.setText(Integer.toString(wrong));
+		correctTextField.setText(Integer.toString(correct));
 	}
 
 	@Override
@@ -219,9 +185,6 @@ public class SolutionPanel extends JPanel implements ActionListener {
 			System.out.println("Enabled.");
 			mainFrame.showSolution();
 		}
-		
 	}
-	
-	
 
 }
