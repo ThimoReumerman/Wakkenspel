@@ -23,8 +23,7 @@ public class Header extends JPanel implements ActionListener {
 	/** Height of the header */
 	public static int HEIGHT = 68;
 
-	/** Button to start new game
-	 * @see GameManager.newGame */
+	/** Button to start new game */
 	private JButton newGameButton;
 	/** Name of the game */
 	private JLabel name;
